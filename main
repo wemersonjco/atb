@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle da Prescrição de Antimicrobianos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+            font-size: 12px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        h1, h2 {
+            text-align: center;
+            margin: 5px 0;
+        }
+        h1 {
+            font-size: 16px;
+        }
+        h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        h3 {
+            font-size: 13px;
+            margin: 5px 0;
+        }
+        .form-group {
+            margin-bottom: 8px;
+        }
+        label {
+            display: inline-block;
+            margin-right: 5px;
+        }
+        input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
+            padding: 3px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .spacer {
+            margin-right: 10px;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+            align-items: center;
+        }
+        .row > div {
+            margin-right: 10px;
+            margin-bottom: 3px;
+        }
+        .check-group {
+            margin: 3px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 4px;
+            text-align: left;
+            font-size: 12px;
+        }
+        .justify {
+            width: 100%;
+        }
+        .buttons {
+            margin-top: 10px;
+            text-align: center;
+        }
+        button {
+            padding: 8px 16px;
+            margin: 0 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 10px;
+        }
+        .atencao {
+            font-size: 11px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        @media print {
+            button {
+                display: none;
+            }
+            @page {
+                size: A4;
+                margin: 0.5cm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>GOVERNO DO ESTADO DE MATO GROSSO</div>
+        <div>SECRETARIA DE ESTADO DE SAÚDE</div>
+        <div>HOSPITAL METROPOLITANO DE VARZEA GRANDE</div>
+        <h1>Hospital Metropolitano de Várzea Grande</h1>
+    </div>
+    
+    <h2>CONTROLE DA PRESCRIÇÃO DE ANTIMICROBIANOS</h2>
+    
+    <form id="prescricaoForm">
+        <div class="form-group">
+            <h3>Dados do paciente</h3>
+            <div class="row">
+                <div>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" style="width: 300px;">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div>
+                    <label for="atendimento">Atendimento:</label>
+                    <input type="text" id="atendimento" name="atendimento">
+                </div>
+                <div>
+                    <label for="bloco">Bloco:</label>
+                    <input type="text" id="bloco" name="bloco" style="width: 60px;">
+                </div>
+                <div>
+                    <label for="leito">Leito/Enfermaria:</label>
+                    <input type="text" id="leito" name="leito">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div>
+                    <label for="dataInternacao">Data Internação:</label>
+                    <input type="date" id="dataInternacao" name="dataInternacao">
+                </div>
+                <div>
+                    <label for="sexo">Sexo:</label>
+                    <input type="text" id="sexo" name="sexo" style="width: 40px;">
+                </div>
+                <div>
+                    <label for="idade">Idade:</label>
+                    <input type="text" id="idade" name="idade" style="width: 60px;">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div>
+                    <label for="peso">Peso:</label>
+                    <input type="text" id="peso" name="peso" style="width: 60px;">
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Indicação de Antimicrobiano:</label>
+            <div class="check-group">
+                <input type="radio" id="profilatico" name="indicacao" value="profilatico" checked>
+                <label for="profilatico">Profilático</label>
+                <span class="spacer"></span>
+                <input type="radio" id="terapeutico" name="indicacao" value="terapeutico">
+                <label for="terapeutico">Terapêutico</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Topografia da Infecção:</label>
+            <div class="check-group">
+                <input type="checkbox" id="tratoUrinario" name="topografia" value="tratoUrinario">
+                <label for="tratoUrinario">Trato Urinário</label>
+                <span class="spacer"></span>
+                <input type="checkbox" id="respiratoria" name="topografia" value="respiratoria">
+                <label for="respiratoria">Respiratória</label>
+                <span class="spacer"></span>
+                <input type="checkbox" id="cirurgia" name="topografia" value="cirurgia">
+                <label for="cirurgia">Cirurgia</label>
+            </div>
+            <div class="check-group">
+                <input type="checkbox" id="pele" name="topografia" value="pele">
+                <label for="pele">Pele e Tecido Subcutâneo</label>
+                <span class="spacer"></span>
+                <input type="checkbox" id="correnteSanguinea" name="topografia" value="correnteSanguinea">
+                <label for="correnteSanguinea">Corrente Sanguínea</label>
+                <span class="spacer"></span>
+                <label for="outraTopografia">Outra? Qual?</label>
+                <input type="text" id="outraTopografia" name="outraTopografia">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Classificação da Infecção:</label>
+            <input type="radio" id="comunitaria" name="classificacao" value="comunitaria">
+            <label for="comunitaria">Comunitária</label>
+            <span class="spacer"></span>
+            <input type="radio" id="hospitalar" name="classificacao" value="hospitalar">
+            <label for="hospitalar">Hospitalar</label>
+        </div>
+        
+        <div class="form-group">
+            <label>Uso prévio de antimicrobiano:</label>
+            <input type="radio" id="usoPrevioSim" name="usoPrevio" value="sim">
+            <label for="usoPrevioSim">SIM</label>
+            <span class="spacer"></span>
+            <input type="radio" id="usoPrevioNao" name="usoPrevio" value="nao" checked>
+            <label for="usoPrevioNao">NÃO</label>
+            <span class="spacer"></span>
+            <label for="quaisAntimicrobianos">Qual(is):</label>
+            <input type="text" id="quaisAntimicrobianos" name="quaisAntimicrobianos" style="width: 250px;">
+        </div>
+        
+        <div class="form-group">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Antimicrobiano</th>
+                        <th>Via</th>
+                        <th>Posologia</th>
+                        <th>Duração Prevista do Tratamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="antimicrobiano1" style="width: 95%;" value="CEFAZOLINA 1g"></td>
+                        <td><input type="text" name="via1" style="width: 95%;" value="EV"></td>
+                        <td><input type="text" name="posologia1" style="width: 95%;" value="8/8H"></td>
+                        <td><input type="text" name="duracao1" style="width: 95%;" value="24h"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="form-group">
+            <label>Resultado Microbiológico:</label>
+            <input type="radio" id="resultadoSim" name="resultadoMicrobiologico" value="sim">
+            <label for="resultadoSim">SIM</label>
+            <span class="spacer"></span>
+            <input type="radio" id="resultadoNao" name="resultadoMicrobiologico" value="nao" checked>
+            <label for="resultadoNao">NÃO</label>
+        </div>
+        
+        <div class="form-group">
+            <label for="justificativa">Justificativa:</label>
+            <input type="text" id="justificativa" name="justificativa" value="PROFILAXIA CIRURGICA - GASTROPLASTIA" class="justify">
+        </div>
+        
+        <div class="form-group">
+            <div class="row">
+                <div>
+                    <label for="medicoSolicitante">Médico Solicitante (assinatura e carimbo):</label>
+                    <input type="text" id="medicoSolicitante" name="medicoSolicitante" style="width: 200px;">
+                </div>
+                <div>
+                    <label for="dataSolicitacao">Data:</label>
+                    <input type="date" id="dataSolicitacao" name="dataSolicitacao">
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <h3>Parecer do SCIH</h3>
+            <div class="row">
+                <div>
+                    <label>Autorizado:</label>
+                    <input type="radio" id="autorizadoSim" name="autorizado" value="sim">
+                    <label for="autorizadoSim">SIM</label>
+                    <span class="spacer"></span>
+                    <input type="radio" id="autorizadoNao" name="autorizado" value="nao">
+                    <label for="autorizadoNao">NÃO</label>
+                </div>
+                <div>
+                    <label for="diasAutorizados">Dias autorizados:</label>
+                    <input type="text" id="diasAutorizados" name="diasAutorizados" style="width: 40px;">
+                </div>
+                <div>
+                    <label for="dataAutorizacao">Data:</label>
+                    <input type="date" id="dataAutorizacao" name="dataAutorizacao">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div>
+                    <label for="medicoSCIH">Médico do SCIH (assinatura e carimbo):</label>
+                    <input type="text" id="medicoSCIH" name="medicoSCIH" style="width: 200px;">
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <h3>Serviços de Farmácia</h3>
+            <div class="row">
+                <div>
+                    <label for="dataRecebido">Recebido em data:</label>
+                    <input type="date" id="dataRecebido" name="dataRecebido">
+                </div>
+                <div>
+                    <label for="horarioRecebido">Horário:</label>
+                    <input type="time" id="horarioRecebido" name="horarioRecebido">
+                </div>
+                <div>
+                    <label for="funcionarioRecebido">Funcionário:</label>
+                    <input type="text" id="funcionarioRecebido" name="funcionarioRecebido" style="width: 150px;">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div>
+                    <label for="observacoes">Observações:</label>
+                    <input type="text" id="observacoes" name="observacoes" class="justify">
+                </div>
+            </div>
+        </div>
+        
+        <div class="atencao">
+            <strong>ATENÇÃO:</strong> ao optar por antimicrobianos indutores de resistência, avalie a possibilidade de utilizar outras opções mais seguras para uso intra-hospitalar.
+        </div>
+        
+        <div class="buttons">
+            <button type="button" id="imprimir">Imprimir Formulário</button>
+            <button type="button" id="limpar">Limpar Campos</button>
+        </div>
+    </form>
+    
+    <div class="footer">
+        <p>Av. Dom Orlando Chaves, s/n. Cristo Rei - Várzea Grande - MT</p>
+        <p>CEP: 78.118-000 - Tel.: 65 3054-9415</p>
+    </div>
+    
+    <script>
+        // Configura a data atual ao carregar a página
+        window.onload = function() {
+            const today = new Date();
+            const formattedDate = today.toISOString().substr(0, 10);
+            document.getElementById('dataSolicitacao').value = formattedDate;
+        };
+        
+        document.getElementById('imprimir').addEventListener('click', function() {
+            window.print();
+        });
+        
+        document.getElementById('limpar').addEventListener('click', function() {
+            document.getElementById('prescricaoForm').reset();
+            // Redefine os valores padrão após limpar
+            document.getElementById('antimicrobiano1').value = "CEFAZOLINA 1g";
+            document.getElementById('via1').value = "EV";
+            document.getElementById('posologia1').value = "8/8H";
+            document.getElementById('duracao1').value = "24h";
+            
+            const today = new Date();
+            const formattedDate = today.toISOString().substr(0, 10);
+            document.getElementById('dataSolicitacao').value = formattedDate;
+        });
+    </script>
+</body>
+</html>
